@@ -44,6 +44,7 @@ size_t Size(void* ptr)
 // implements heap sort
 // extraMemoryAllocated counts bytes of memory allocated
 
+// Swaps two elements in an array...
 void swap(int *xp, int *yp)
 {
     int temp = *xp;
@@ -51,19 +52,22 @@ void swap(int *xp, int *yp)
     *yp = temp;
 }
 
+// Make sure the properties of the subtree are being satisfied while sorting compares root node
+// with child node.
 void heapify(int arr[], int n, int i) {
     // Find largest among root, left child and right child
     int largest = i;
     int left = 2 * i + 1;
     int right = 2 * i + 2;
 
+    // Child Node
     if (left < n && arr[left] > arr[largest])
         largest = left;
 
+    // Child Node
     if (right < n && arr[right] > arr[largest])
         largest = right;
 
-    // Swap and continue heapifying if root is not largest
     if (largest != i) {
         swap(&arr[i], &arr[largest]);
         heapify(arr, n, largest);
